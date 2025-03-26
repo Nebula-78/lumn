@@ -369,42 +369,71 @@
             border-top: 1px solid #222;
         }
 
-        /* Media Queries pour la responsivité */
+        /* Styles pour le menu hamburger */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1001;
+        }
+
+        .menu-toggle .bar {
+            width: 30px;
+            height: 3px;
+            background-color: #fff;
+            margin: 5px 0;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-toggle.active .bar:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+
+        .menu-toggle.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active .bar:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
         @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                text-align: center;
-            }
-            header nav{
-                margin-top: 15px;
-            }
             nav ul {
+                display: none;
                 flex-direction: column;
                 align-items: center;
+                width: 100%;
+                padding: 20px 0;
+                background-color: #0F0F0F;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                z-index: 1000;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+                transform: translateY(-100%);
+                transition: transform 0.3s ease-in-out;
             }
+
+            nav ul.active {
+                transform: translateY(0);
+                display: flex; /* Added this line */
+            }
+
             nav ul li {
-                margin: 10px 0;
+                margin: 15px 0;
             }
-            .hero h1 {
-                font-size: 32px;
+
+            .menu-toggle {
+                display: flex;
             }
-            .hero p {
-                font-size: 16px;
+            header {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
             }
-            .card {
-                grid-template-columns: 1fr;
-            }
-            .grid {
-                grid-template-columns: 1fr;
-            }
-            #about p{
-                font-size: 16px;
-            }
-            .form-container {
-                padding: 30px;
-            }
-             body{
-                padding: 0;
+            header nav {
+                margin-top: 0;
             }
         }
 
@@ -449,6 +478,11 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
+        <div class="menu-toggle">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
     </header>
 
     <section class="hero">
